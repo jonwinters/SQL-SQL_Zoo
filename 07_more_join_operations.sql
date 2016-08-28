@@ -171,3 +171,12 @@ JOIN
 ) AS a
 ON casting.movieid = a.movieid
 WHERE actor.name <> 'Art Garfunkel'
+---------------------------------
+select name from actor where id in
+(select actorid from casting where movieid in (
+select movieid from casting 
+join actor on actor.id=casting.actorid
+where actor.name='Art Garfunkel') )
+and name <>'Art Garfunkel'
+---------------------------------
+我的答案很蠢但是很容易理解，用了两层子查询

@@ -137,6 +137,18 @@ FROM
 ) AS a
 WHERE star_count >=30
 ORDER BY a.name
+----------------------
+select actor.name from actor join 
+casting on casting.actorid=actor.id 
+where casting.ord =1 
+group by actor.name 
+having count(*) >=30
+order by actor.name
+----------------------
+我这里用having语句代替了上面标准答案的子查询，讲道理的话上面的比较好理解，
+毕竟having语句用的少，上面的子查询先通过group分组统计了每个演员作为leading star的次数
+然后再找出临时表中 star_count >=30的
+----------------------
 
 -- 15. List the 1978 films by order of cast list size.
 SELECT movie.title, COUNT(*) cast_size
